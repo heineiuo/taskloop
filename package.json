@@ -1,0 +1,28 @@
+{
+  "name": "taskloop",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d build --ignore 'src/tests' --source-maps --extensions \".ts\" && tsc -d",
+    "prepublish": "export NODE_ENV=production && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heineiuo/node-taskloop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heineiuo/node-taskloop/issues"
+  },
+  "homepage": "https://github.com/heineiuo/node-taskloop#readme",
+  "devDependencies": {
+    "node-ts-scripts": "^0.3.8"
+  }
+}
