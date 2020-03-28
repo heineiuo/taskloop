@@ -51,6 +51,7 @@ export class TaskScheduler {
     if (this.loopTimer) {
       this.stop()
     }
+    this.loop()
     this.loopTimer = setInterval(this.loop, this.waitGap)
   }
 
@@ -110,7 +111,9 @@ export class TaskScheduler {
 
         const runner = await this.createRunner(task)
         if (runner) {
-          const waitTime = (Date.now() - task.last) % task.every
+          const gapTime = Date.now() - task.last
+          // run task immediatily if task has been delaied
+          const waitTime = gapTime > task.every ? 0 : gapTime % task.every
           this.runners.set(task.ID, runner)
           this.delayRun(runner, waitTime)
           task.status = TaskStatus.pending
